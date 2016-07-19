@@ -1,0 +1,11 @@
+{
+    "name": "lomadee-api",
+    "version": "0.0.5",
+    "description": "API integration with Lomadee",
+    "author": "André Ferreira <andrehrf@gmail.com>",
+    "main": "index.js",
+    "dependencies": {
+        "request": "^2.72.0",
+        "xml2json-light": "^1.0.4"
+    }
+}
