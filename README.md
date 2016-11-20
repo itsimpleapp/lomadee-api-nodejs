@@ -21,7 +21,7 @@ $ npm install lomadee-api
 ```js
 "use strict";
 
-let Lomadee = require("./index.js"),
+let Lomadee = require("lomadee-api"),
     lomadee = new Lomadee("token", "sourceid");
     
 lomadee.categories({}, (err, results) => {
