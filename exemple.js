@@ -38,3 +38,7 @@ lomadee.report("user", "pass", {startDate: '27052016', endDate: '16072016', even
     else
         console.log(results);
 });
+
+lomadee.deeplink("http://www.submarino.com.br/", (err, url) => {
+    console.log(url); //http://links.lomadee.com/ls/T1k5YTtyR0hYZWxPTDszNTcwMTM4ODswOzk1MjswOzU3NjY7QlI7MztodHRwJTNBJTJGJTJGd3d3LnN1Ym1hcmluby5jb20uYnIlMkY7MDsw.html
+});

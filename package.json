@@ -1,6 +1,6 @@
 {
     "name": "lomadee-api",
-    "version": "0.0.5",
+    "version": "0.1.2",
     "description": "API integration with Lomadee",
     "author": "André Ferreira <andrehrf@gmail.com>",
     "main": "index.js",

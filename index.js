@@ -41,6 +41,18 @@ module.exports = function(token, sourceid){
         },
         
         /**
+         * Function to encode URL
+         * 
+         * @see http://locutus.io/php/url/urlencode/
+         * @param str
+         * @return str
+         */
+        urlencode: function(str){
+            str = (str + '');
+            return encodeURIComponent(str).replace(/!/g, '%21').replace(/'/g, '%27').replace(/\(/g, '%28').replace(/\)/g, '%29').replace(/\*/g, '%2A').replace(/%20/g, '+')
+        },
+        
+        /**
          * Get categories list
          *
          * @see http://developer.buscape.com.br/portal/developer/documentacao/apis-afiliados/api-lomadee/api-de-ofertas/#2C9EF4C95334181D0153352D59D8088B
@@ -158,6 +170,35 @@ module.exports = function(token, sourceid){
                     params.format = "json";
                     let URL = this.createurl("http://bws.buscape.com.br/api/lomadee/reportTransaction/" + auth.token, params);
                     this.getinapi(URL, true, cb);
+                }
+            });
+        },
+        
+        /**
+         * Create tracking links
+         * 
+         * @param string url
+         * @param integer adspace
+         * @return void
+         */
+        deeplink: function(url, cb){
+            request("http://bws.buscape.com/service/createLinks/lomadee/3651516a44624e526551453d/?sourceId="+sourceid+"&format=json&link1=" + this.urlencode(deeplink), (error, response, body) => { 
+                if(error){
+                    cb(error, null);
+                }
+                else{
+                    var resp = JSON.parse(body);
+                    
+                    if(typeof cb == "function"){
+                        if (resp == null)
+                            cb({"msg": "Error connecting to Lomadee."}, "");      
+                        else if (resp.lomadeelinks[0].lomadeelink.code == 0)	
+                            cb(false, resp.lomadeelinks[0].lomadeelink.redirectlink);  
+                        else if (resp.details.code == 501)
+                            cb({"msg": "Invalid SourceId."}, "");                         
+                        else
+                            cb({"msg": "Invalid link to this program."}, "");  
+                    }
                 }
             });
         }
