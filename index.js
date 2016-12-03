@@ -182,7 +182,7 @@ module.exports = function(token, sourceid){
          * @return void
          */
         deeplink: function(url, cb){
-            request("http://bws.buscape.com/service/createLinks/lomadee/3651516a44624e526551453d/?sourceId="+sourceid+"&format=json&link1=" + this.urlencode(url), (error, response, body) => { 
+            request("http://bws.buscape.com/service/createLinks/lomadee/"+token+"/?sourceId="+sourceid+"&format=json&link1=" + this.urlencode(url), (error, response, body) => { 
                 if(error){
                     cb(error, null);
                 }
